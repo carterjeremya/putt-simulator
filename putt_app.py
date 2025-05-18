@@ -94,3 +94,18 @@ st.write(f"**Final Position**: ({xf:.2f}, {yf:.2f}) ft")
 # --- Plot ---
 fig = plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp, b)
 st.pyplot(fig)
+
+st.markdown("""
+---
+
+#### ⚠️ Disclaimer
+
+This tool is intended for **educational and entertainment purposes only**.  
+It is **not approved for use during competition** or for **posting scores to an official USGA handicap index**.
+
+Use of this tool during sanctioned play may violate **Rule 4.3a** of the USGA Rules of Golf.  
+This software does **not constitute golf instruction or professional advice**.
+
+Actual putting conditions may vary due to factors such as grain, moisture, imperfections, or course-specific slope characteristics.  
+Always consult with a qualified instructor or rules official and follow all **Rules of Golf** and local tournament regulations.
+""")

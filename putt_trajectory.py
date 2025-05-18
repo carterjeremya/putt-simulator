@@ -117,7 +117,7 @@ if __name__ == "__main__":
     # a0:    inital angle around hole (+ is ccw, 0 is at 3 o'clock)
     # stimp: green speed
     # slope: green slope
-    d0, a0, stimp, slope_y = 30, -90, 10, 0.01
+    d0, a0, stimp, slope_y = 30, -95, 10, 0.01
     
     g = 32.174
     x0, y0 = d0 * np.cos(np.radians(a0)), d0 * np.sin(np.radians(a0))
@@ -148,7 +148,7 @@ if __name__ == "__main__":
     
     if np.isclose(normalized_angle, 90, atol=0.1) or np.isclose(normalized_angle, 270, atol=0.1):
         print("**Visual Aim Cue:** Aim directly at the center of the hole.")
-        b = None
+        fig = plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp)
         
     else:
         m = dy / dx
@@ -164,14 +164,13 @@ if __name__ == "__main__":
                 f"**Visual Aim Cue:** Aim so your line crosses the fall line "
                 f"{abs(offset_in - 0.177 * 12 / 2):.1f} inches {dir_str} the hole."
             )
-    
+        fig = plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp, b)
     
     print(f"**Equivalent flat putt distance:** {d_equiv:.2f} ft")
     print(f"**Initial Speed:** {v0:.2f} ft/s")
     print(f"**Entry Speed at Hole:** {entry_speed:.2f} ft/s")
     print(f"**Final Position**: ({xf:.2f}, {yf:.2f}) ft")
     
-    # --- Plot ---
-    fig = plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp, b)
+    
 
     plt.show(fig)

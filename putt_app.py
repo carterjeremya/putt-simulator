@@ -65,7 +65,6 @@ normalized_angle = aim_angle % 360
 
 if np.isclose(normalized_angle, 90, atol=0.1) or np.isclose(normalized_angle, 270, atol=0.1):
     st.write("**Visual Aim Cue:** Aim directly at the center of the hole.")
-    b = None
     fig = plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp)
     
 else:

@@ -29,8 +29,8 @@ st.markdown("""
 **Putts are optimized to finish approximately 2-3 feet beyond the hole.**
 """)
 
-
 # --- Inputs ---
+st.markdown("### Inputs")
 distance = st.slider("Distance to hole (ft)", 3, 30, 10, step=1)
 angle = st.slider("Starting angle (deg)", -180, 180, 0, step=5)
 stimp = st.slider("Green speed (Stimp)", 8, 13, 10, step=1)
@@ -64,7 +64,9 @@ dy = aim_y - y0
 normalized_angle = aim_angle % 360
 
 b = 0
-    
+st.markdown("### ✅ Results")
+
+
 if np.isclose(normalized_angle, 90, atol=0.1) or np.isclose(normalized_angle, 270, atol=0.1):
     st.write("**Visual Aim Cue:** Aim directly at the center of the hole.")
     
@@ -76,7 +78,7 @@ else:
     dir_str = "above" if offset_in > 0 else "below"
     
     if offset_in < 0.177 * 12:
-        st.write(f"**Visual Aim Cue:** Aim inside the hole, {abs(offset_in):.1f} inches above center.")
+        st.write(f"### Results\n**Visual Aim Cue:** Aim inside the hole, {abs(offset_in):.1f} inches above center.")
     else:
         st.write(
             f"**Visual Aim Cue:** Aim so your line crosses the fall line "

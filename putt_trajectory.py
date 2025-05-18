@@ -87,16 +87,15 @@ def plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp, b, g=32.174, hole_ra
 
     x, y = sol.y[0], sol.y[1]
     fig, ax = plt.subplots(figsize=(5, 5))  # Make sure this is returned
+    ax.plot([x0, aim_x], [y0, aim_y], 'b--', lw=0.5, label='Aim Line')
     ax.plot(x, y, lw=1, label='Ball path')
     ax.scatter([x[0]], [y[0]], s=10, c='black', label='Start')
-    
-    ax.scatter(0, b, s=10, c='black', marker='x', label='Visual Cue')
-        
+    ax.scatter(0, b, s=10, c='black', marker='x', label='Visual Cue')    
     ax.scatter([aim_x], [aim_y], s=10, c='blue', label='Aim Point')
-    ax.plot([x0, aim_x], [y0, aim_y], 'b--', lw=1, label='Aim Line')
-    ax.add_patch(plt.Circle((0, 0), hole_radius, color='red', alpha=0.3, label='Hole'))
-    ax.axhline(0, color='gray', ls='--', lw=0.5)
-    ax.axvline(0, color='gray', ls='--', lw=0.5)
+    
+    ax.add_patch(plt.Circle((0, 0), hole_radius, color='red', alpha=0.8, label='Hole'))
+    # ax.axhline(0, color='gray', ls='--', lw=0.5)
+    # ax.axvline(0, color='gray', ls='--', lw=0.5)
 
     extent = max(np.max(np.abs(x)), np.max(np.abs(y)), 1) + 2
     ax.set_xlim(-extent, extent)
@@ -105,7 +104,16 @@ def plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp, b, g=32.174, hole_ra
     ax.set_title('Optimized Putt Trajectory')
     ax.set_xlabel('Left/Right (ft)')
     ax.set_ylabel('Up/Down (ft)')
-    ax.grid(True)
+    ax.grid(
+        True,                 # turn on grid
+        which='both',         # 'major', 'minor', or 'both'
+        axis='both',          # 'x', 'y', or 'both'
+        linestyle='--',       # '-', '--', '-.', ':'
+        linewidth=0.5,
+        color='gray',
+        alpha=0.7
+    )
+
     ax.legend()
     return fig
 
@@ -116,7 +124,7 @@ if __name__ == "__main__":
     # a0:    inital angle around hole (+ is ccw, 0 is at 3 o'clock)
     # stimp: green speed
     # slope: green slope
-    d0, a0, stimp, slope_y = 30, -90, 10, 0.01
+    d0, a0, stimp, slope_y = 12, -110, 10, 0.01
     
     g = 32.174
     x0, y0 = d0 * np.cos(np.radians(a0)), d0 * np.sin(np.radians(a0))

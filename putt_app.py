@@ -1,6 +1,8 @@
 import streamlit as st
 import numpy as np
-from putt_trajectory import converge_on_aim_and_speed, compute_mu_from_stimp, plot_putt_trajectory
+from putt_trajectory import simulate_putt, converge_on_aim_and_speed, compute_mu_from_stimp, plot_putt_trajectory
+
+_ = simulate_putt(10, 0, 6.0, 180, 10, 0.01)
 
 st.set_page_config(page_title="Putt Simulator", layout="centered")
 

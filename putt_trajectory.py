@@ -145,9 +145,11 @@ if __name__ == "__main__":
     # Normalize angle to [0, 360)
     normalized_angle = aim_angle % 360
     
+    b = 0
+    
     if np.isclose(normalized_angle, 90, atol=0.1) or np.isclose(normalized_angle, 270, atol=0.1):
         print("**Visual Aim Cue:** Aim directly at the center of the hole.")
-        b = 0
+
         
     else:
         m = dy / dx

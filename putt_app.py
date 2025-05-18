@@ -22,9 +22,10 @@ st.markdown("""
 3. The plot shows the ball's path, your visual aim line, and the hole.
 
 **Interpretation:**
-- The **Visual Aim Cue** tells you how far **above/below** the hole to aim along the fall line
+- The **Visual Aim Cue** tells you how far **above** the hole to aim along the **fall line**
 - **Entry Speed** shows how fast the ball would be moving as it enters the hole.
 - **Equivalent Flat Putt Distance** how far the ball would roll on a flat green.
+- **Final Position** shows approximately where the putt will finish.
 
 **Putts are optimized to finish approximately two feet beyond the hole and enter on the high side of the cup.**
 """)

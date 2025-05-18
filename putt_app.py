@@ -1,7 +1,6 @@
 import streamlit as st
-import matplotlib.pyplot as plt
 import numpy as np
-from putt_trajectory import simulate_putt, converge_on_aim_and_speed, compute_mu_from_stimp, plot_putt_trajectory
+from putt_trajectory import converge_on_aim_and_speed, compute_mu_from_stimp, plot_putt_trajectory
 
 st.set_page_config(page_title="Putt Simulator", layout="centered")
 
@@ -27,7 +26,7 @@ st.markdown("""
 - **Equivalent Flat Putt Distance** how far the ball would roll on a flat green.
 - **Final Position** shows approximately where the putt will finish.
 
-**Putts are optimized to finish approximately two feet beyond the hole and enter on the high side of the cup.**
+**Putts are optimized to finish approximately 2-3 feet beyond the hole.**
 """)
 
 
@@ -66,6 +65,9 @@ normalized_angle = aim_angle % 360
 
 if np.isclose(normalized_angle, 90, atol=0.1) or np.isclose(normalized_angle, 270, atol=0.1):
     st.write("**Visual Aim Cue:** Aim directly at the center of the hole.")
+    b = None
+    fig = plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp)
+    
 else:
     m = dy / dx
     b = y0 - m * x0  # y-intercept at x = 0
@@ -80,7 +82,7 @@ else:
             f"**Visual Aim Cue:** Aim so your line crosses the fall line "
             f"{abs(offset_in - 0.177 * 12 / 2):.1f} inches {dir_str} the hole."
         )
-
+    fig = plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp, b)
 
 st.write(f"**Equivalent flat putt distance:** {d_equiv:.2f} ft")
 st.write(f"**Initial Speed:** {v0:.2f} ft/s")
@@ -88,5 +90,4 @@ st.write(f"**Entry Speed at Hole:** {entry_speed:.2f} ft/s")
 st.write(f"**Final Position**: ({xf:.2f}, {yf:.2f}) ft")
 
 # --- Plot ---
-fig = plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp, g)
 st.pyplot(fig)

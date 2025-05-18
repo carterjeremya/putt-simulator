@@ -79,7 +79,7 @@ def converge_on_aim_and_speed(x0, y0, stimp, slope_y,
 
     return aim_angle, v0, entry_speed, best_sol  # ❌ Fallthrough
 
-def plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp, g=32.174, hole_radius=0.177):
+def plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp, b=None, g=32.174, hole_radius=0.177):
     mu = compute_mu_from_stimp(stimp, g)
     aim_distance = 0.5 * v0**2 / (g * mu)
     aim_rad = np.radians(aim_angle)
@@ -89,6 +89,10 @@ def plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp, g=32.174, hole_radiu
     fig, ax = plt.subplots(figsize=(5, 5))  # Make sure this is returned
     ax.plot(x, y, lw=1, label='Ball path')
     ax.scatter([x[0]], [y[0]], s=10, c='black', label='Start')
+    
+    if b is not None:
+        ax.scatter(0, b, s=10, c='black', marker='x', label='Visual Cue')
+        
     ax.scatter([aim_x], [aim_y], s=10, c='blue', label='Aim Point')
     ax.plot([x0, aim_x], [y0, aim_y], 'b--', lw=1, label='Aim Line')
     ax.add_patch(plt.Circle((0, 0), hole_radius, color='red', alpha=0.3, label='Hole'))
@@ -113,7 +117,7 @@ if __name__ == "__main__":
     # a0:    inital angle around hole (+ is ccw, 0 is at 3 o'clock)
     # stimp: green speed
     # slope: green slope
-    d0, a0, stimp, slope_y = 30, -170, 10, 0.01
+    d0, a0, stimp, slope_y = 30, -90, 10, 0.01
     
     g = 32.174
     x0, y0 = d0 * np.cos(np.radians(a0)), d0 * np.sin(np.radians(a0))
@@ -127,52 +131,47 @@ if __name__ == "__main__":
         entry_speed_target=1.5, entry_speed_tol=0.3, g=g
     )
 
-    fig = plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp, g)
-
-
     xf, yf = sol.y[0, -1], sol.y[1, -1]
     d_equiv = 0.5 * v0**2 / (g * mu)
     aim_distance = 0.5 * v0**2 / (g * mu)
-    
-    print(f"Recommended Aim Angle: {aim_angle:.2f}°")
-    print(f"Equivalent flat putt distance: {d_equiv:.2f} ft")
-    print(f"Initial Speed: {v0:.2f} ft/s")
-    print(f"Entry Speed at Hole: {entry_speed:.2f} ft/s")
-    print(f"Final Position: ({xf:.2f}, {yf:.2f}) ft")
     
     aim_rad = np.radians(aim_angle)
     aim_x = x0 + aim_distance * np.cos(aim_rad)
     aim_y = y0 + aim_distance * np.sin(aim_rad)
     
-    # Vector from ball to hole (fall line), normalized
-    fall_dx = -x0
-    fall_dy = -y0
-    fall_line = np.array([fall_dx, fall_dy])
-    fall_unit = fall_line / np.linalg.norm(fall_line)
+    # Compute slope (m) and intercept (b) of aim line: y = m*x + b
+    dx = aim_x - x0
+    dy = aim_y - y0
     
-    # Perpendicular vector: 90° left of fall line (i.e. high side)
-    perp_unit = np.array([-fall_unit[1], fall_unit[0]])
+    # Normalize angle to [0, 360)
+    normalized_angle = aim_angle % 360
     
-    # Vector from hole to aim point
-    aim_vec = np.array([aim_x, aim_y])  # since hole is at (0,0)
-    
-    # Project onto fall line and perpendicular
-    along_line = np.dot(aim_vec, fall_unit)   # in feet
-    across_line = np.dot(aim_vec, perp_unit)  # in feet
-    
-    # Convert across to inches
-    across_in = across_line * 12
-
-    # Directions
-    y_dir = "beyond" if along_line > 0 else "short of"
-    if aim_vec[0] < 0:
-        x_dir = "below" if across_line > 0 else "above"
+    if np.isclose(normalized_angle, 90, atol=0.1) or np.isclose(normalized_angle, 270, atol=0.1):
+        print("**Visual Aim Cue:** Aim directly at the center of the hole.")
+        b = None
+        
     else:
-        x_dir = "above" if across_line > 0 else "below"
+        m = dy / dx
+        b = y0 - m * x0  # y-intercept at x = 0
     
-    print(
-        f"Aim Point: Aim {abs(across_in):.1f} inches {x_dir} the hole "
-        f"and {abs(along_line):.2f} feet {y_dir} the hole."
-    )
+        offset_in = b * 12
+        dir_str = "above" if offset_in > 0 else "below"
+        
+        if offset_in < 0.177 * 12:
+            print(f"**Visual Aim Cue:** Aim inside the hole, {abs(offset_in):.1f} inches above center.")
+        else:
+            print(
+                f"**Visual Aim Cue:** Aim so your line crosses the fall line "
+                f"{abs(offset_in - 0.177 * 12 / 2):.1f} inches {dir_str} the hole."
+            )
+    
+    
+    print(f"**Equivalent flat putt distance:** {d_equiv:.2f} ft")
+    print(f"**Initial Speed:** {v0:.2f} ft/s")
+    print(f"**Entry Speed at Hole:** {entry_speed:.2f} ft/s")
+    print(f"**Final Position**: ({xf:.2f}, {yf:.2f}) ft")
+    
+    # --- Plot ---
+    fig = plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp, b)
 
     plt.show(fig)

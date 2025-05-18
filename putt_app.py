@@ -8,7 +8,7 @@ st.set_page_config(page_title="Putt Simulator", layout="centered")
 st.title("Putt Simulator")
 
 st.markdown("""
-### ℹ️ How to Use This Golf Putt Simulator
+### ℹ️ How to Use This Putt Simulator
 
 **Inputs:**
 - **Distance to Hole**: Straight-line distance from ball to cup, in feet.
@@ -26,7 +26,7 @@ st.markdown("""
 - **Entry Speed** shows how fast the ball would be moving as it enters the hole.
 - **Equivalent Flat Putt Distance** how far the ball would roll on a flat green.
 
-Putts are optimized to finish approximately two feet beyond the hole and enter on the high side of the cup.
+**Putts are optimized to finish approximately two feet beyond the hole and enter on the high side of the cup.**
 """)
 
 

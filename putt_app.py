@@ -98,6 +98,38 @@ st.pyplot(fig)
 st.markdown("""
 ---
 
+### 🏌️‍♂️ Suggested Practice Drills
+
+#### 🎯 1. Dial In Distance Control on Flat Putts
+- Find a **flat section** of the practice green.
+- Mark putts at **5, 10, 15, and 20 feet**.
+- Focus on consistent **stroke length and tempo**.
+- Goal: Ball should finish **12–18 inches past the hole**.
+
+#### 🧭 2. Train Your Eyes: Identify the Fall Line
+- Find a hole with **visible slope**.
+- Walk around the hole to estimate the **fall line** (true downhill).
+- Putt from that point **straight at the hole** — does it go in?
+- Adjust until you find the **true straight putt** line.
+
+#### 🎯 3. Set a Visual Aim Point Above the Hole
+- Choose a putt that breaks (e.g. left-to-right).
+- Estimate a **visual target above the hole** along the fall line.
+- Place a **ball marker or tee** at that point.
+- Putt with pace to finish **~2 feet past the hole**, aiming at the marker.
+
+#### 🔁 4. Combine Read + Pace Training
+- Pick 3–4 putts from different angles.
+- For each:
+  - Read the break
+  - Set your aim point
+  - Match your **speed** to your **line**
+- Track how often you finish inside a **6-inch “capture zone”** around the cup.
+
+💡 *Pro tip: Use this simulator to plan your reads, then go test them on the green.*
+
+---
+
 #### ⚠️ Disclaimer
 
 This tool is intended for **educational and entertainment purposes only**.  
@@ -107,5 +139,6 @@ Use of this tool during sanctioned play may violate **Rule 4.3a** of the USGA Ru
 This software does **not constitute golf instruction or professional advice**.
 
 Actual putting conditions may vary due to factors such as grain, moisture, imperfections, or course-specific slope characteristics.  
+
 Always consult with a qualified instructor or rules official and follow all **Rules of Golf** and local tournament regulations.
 """)

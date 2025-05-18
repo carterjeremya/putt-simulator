@@ -134,10 +134,10 @@ st.markdown("""
 
 #### ⚠️ Disclaimer
 
-This tool is intended for **educational and entertainment purposes only**.  
-It is **not approved for use during competition** or for **posting scores to an official USGA handicap index**.
+This tool is intended for **educational and entertainment purposes only**. It is **not approved for use during competition** or for **posting scores to an official USGA handicap index**.
 
 Use of this tool during sanctioned play may violate **Rule 4.3a** of the USGA Rules of Golf.  
+
 This software does **not constitute golf instruction or professional advice**.
 
 Actual putting conditions may vary due to factors such as grain, moisture, imperfections, or course-specific slope characteristics.  

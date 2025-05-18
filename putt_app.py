@@ -142,3 +142,8 @@ Actual putting conditions may vary due to factors such as grain, moisture, imper
 
 Always consult with a qualified instructor or rules official and follow all **Rules of Golf** and local tournament regulations.
 """)
+
+st.markdown("""
+---
+© 2024 Jeremy Carter. All rights reserved.
+""")

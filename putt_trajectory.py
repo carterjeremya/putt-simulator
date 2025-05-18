@@ -87,7 +87,7 @@ def plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp, g=32.174, hole_radiu
 
     x, y = sol.y[0], sol.y[1]
     fig, ax = plt.subplots(figsize=(5, 5))  # Make sure this is returned
-    ax.plot(x, y, lw=2, label='Ball path')
+    ax.plot(x, y, lw=1, label='Ball path')
     ax.scatter([x[0]], [y[0]], s=10, c='black', label='Start')
     ax.scatter([aim_x], [aim_y], s=10, c='blue', label='Aim Point')
     ax.plot([x0, aim_x], [y0, aim_y], 'b--', lw=1, label='Aim Line')

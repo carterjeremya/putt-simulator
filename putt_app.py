@@ -5,7 +5,30 @@ from putt_trajectory import simulate_putt, converge_on_aim_and_speed, compute_mu
 
 st.set_page_config(page_title="Putt Simulator", layout="centered")
 
-st.title("Golf Putt Simulator")
+st.title("Putt Simulator")
+
+st.markdown("""
+### ℹ️ How to Use This Golf Putt Simulator
+
+**Inputs:**
+- **Distance to Hole**: Straight-line distance from ball to cup, in feet.
+- **Start Angle**: Direction around the hole (0° = directly right, 90° = directly above, -90° = directly below).
+- **Stimp**: Green speed from the stimpmeter. Higher = faster greens (default is 10).
+- **Slope**: Vertical slope of the green. Positive slope is uphill
+
+**How to Use:**
+1. Adjust sliders to set the starting position and green conditions.
+2. The simulator computes the optimal aim angle and initial speed needed to hole the putt.
+3. The plot shows the ball's path, your visual aim line, and the hole.
+
+**Interpretation:**
+- The **Visual Aim Cue** tells you how far **above/below** the hole to aim along the fall line
+- **Entry Speed** shows how fast the ball would be moving as it enters the hole.
+- **Equivalent Flat Putt Distance** how far the ball would roll on a flat green.
+
+Putts are optimized to finish approximately two feet beyond the hole and enter on the high side of the cup.
+""")
+
 
 # --- Inputs ---
 distance = st.slider("Distance to hole (ft)", 3, 30, 10, step=1)

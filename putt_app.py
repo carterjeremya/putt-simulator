@@ -65,7 +65,7 @@ normalized_angle = aim_angle % 360
 
 if np.isclose(normalized_angle, 90, atol=0.1) or np.isclose(normalized_angle, 270, atol=0.1):
     st.write("**Visual Aim Cue:** Aim directly at the center of the hole.")
-    fig = plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp)
+    b = 0
     
 else:
     m = dy / dx
@@ -81,7 +81,7 @@ else:
             f"**Visual Aim Cue:** Aim so your line crosses the fall line "
             f"{abs(offset_in - 0.177 * 12 / 2):.1f} inches {dir_str} the hole."
         )
-    fig = plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp, b)
+    
 
 st.write(f"**Equivalent flat putt distance:** {d_equiv:.2f} ft")
 st.write(f"**Initial Speed:** {v0:.2f} ft/s")
@@ -89,4 +89,5 @@ st.write(f"**Entry Speed at Hole:** {entry_speed:.2f} ft/s")
 st.write(f"**Final Position**: ({xf:.2f}, {yf:.2f}) ft")
 
 # --- Plot ---
+fig = plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp, b)
 st.pyplot(fig)

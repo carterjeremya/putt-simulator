@@ -30,7 +30,7 @@ def simulate_putt(x0, y0, v0, aim_angle_deg, stimp, slope_y, g=32.174, t_max=10)
         args=(g, mu, slope_y),
         t_eval=np.linspace(0, t_max, 1000),
         events=stop_event,
-        rtol=1e-6, atol=1e-8
+        rtol=1e-3, atol=1e-5
     )
 
 def is_high_side_entry(x, y, closest_idx, slope_y, ball_radius=0.07):
@@ -44,7 +44,7 @@ def converge_on_aim_and_speed(x0, y0, stimp, slope_y,
     v0_init, aim_angle_init,
     entry_speed_target=1.75, entry_speed_tol=0.25,
     hole_radius=0.177, max_iter=500,
-    aim_step=0.10, speed_step=0.10,
+    aim_step=0.20, speed_step=0.50,
     g=32.174):
 
     v0, aim_angle = v0_init, aim_angle_init

@@ -33,10 +33,10 @@ st.markdown("""
 
 # --- Inputs ---
 st.markdown("### Inputs")
-distance = st.slider("Distance to hole (ft)", 3, 30, 10, step=1)
+distance = st.slider("Distance to hole (ft)", 3, 25, 10, step=1)
 angle = st.slider("Starting angle (deg)", -180, 180, 0, step=5)
 stimp = st.slider("Green speed (Stimp)", 8, 13, 10, step=1)
-slope_y = st.slider("Slope (rise/run)", 0.0, 0.04, 0.01, step=0.005, format="%.3f")
+slope_y = st.slider("Slope (rise/run)", 0.05, 0.04, 0.01, step=0.005, format="%.3f")
 
 x0 = distance * np.cos(np.radians(angle))
 y0 = distance * np.sin(np.radians(angle))
@@ -88,7 +88,7 @@ else:
         )
     
 
-st.write(f"**Equivalent flat putt distance:** {d_equiv:.2f} ft")
+st.write(f"**Equivalent Flat Putt Distance:** {d_equiv:.2f} ft")
 st.write(f"**Initial Speed:** {v0:.2f} ft/s")
 st.write(f"**Entry Speed at Hole:** {entry_speed:.2f} ft/s")
 st.write(f"**Final Position**: ({xf:.2f}, {yf:.2f}) ft")
@@ -104,9 +104,9 @@ st.markdown("""
 
 #### 🎯 1. Dial In Distance Control on Flat Putts
 - Find a **flat section** of the practice green.
-- Mark putts at **5, 10, 15, and 20 feet**.
-- Focus on consistent **stroke length and tempo**.
-- Goal: Ball should finish **12–18 inches past the hole**.
+- Mark distance targets at **5, 10, 15, and 20 feet**.
+- Control distance by stoke length, maintainng **consistent tempo**.
+- Ball should finish **just past the mark**.
 
 #### 🧭 2. Train Your Eyes: Identify the Fall Line
 - Find a hole with **visible slope**.
@@ -115,20 +115,20 @@ st.markdown("""
 - Adjust until you find the **true straight putt** line.
 
 #### 🎯 3. Set a Visual Aim Point Above the Hole
-- Choose a putt that breaks (e.g. left-to-right).
+- Choose a location around the hole, estimate distance and slope.
 - Estimate a **visual target above the hole** along the fall line.
 - Place a **ball marker or tee** at that point.
 - Putt with pace to finish **~2 feet past the hole**, aiming at the marker.
 
 #### 🔁 4. Combine Read + Pace Training
-- Pick 3–4 putts from different angles.
+- Pick 5–10 putts from different locations around the hole, varying distance and angle.
 - For each:
   - Read the break
   - Set your aim point
   - Match your **speed** to your **line**
-- Track how often you finish inside a **6-inch “capture zone”** around the cup.
+- Goal is to either make, or miss above the hole and finish approximately 2 feet beyond.
 
-💡 *Pro tip: Use this simulator to plan your reads, then go test them on the green.*
+💡 *Pro tip: Use this simulator to practice your reads, then go test them on the green.*
 
 ---
 

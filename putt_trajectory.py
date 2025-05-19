@@ -174,7 +174,7 @@ if __name__ == "__main__":
                 f"{abs(offset_in - 0.177 * 12 / 2):.1f} inches {dir_str} the hole."
             )
     
-    print(f"**Equivalent flat putt distance:** {d_equiv:.2f} ft")
+    print(f"**Equivalent Flat Putt Distance:** {d_equiv:.2f} ft")
     print(f"**Initial Speed:** {v0:.2f} ft/s")
     print(f"**Entry Speed at Hole:** {entry_speed:.2f} ft/s")
     print(f"**Final Position**: ({xf:.2f}, {yf:.2f}) ft")

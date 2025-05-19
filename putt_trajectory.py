@@ -16,6 +16,7 @@ def putt_dynamics(t, state, g, mu, slope_y):
 
 def stop_event(t, state, g, mu, slope_y):
     return np.hypot(state[2], state[3]) - 0.01
+
 stop_event.terminal = True
 stop_event.direction = -1
 
@@ -124,7 +125,7 @@ if __name__ == "__main__":
     # a0:    inital angle around hole (+ is ccw, 0 is at 3 o'clock)
     # stimp: green speed
     # slope: green slope
-    d0, a0, stimp, slope_y = 10, -190, 10, 0.02
+    d0, a0, stimp, slope_y = 10, 135, 8.5, 0.02
     
     g = 32.174
     x0, y0 = d0 * np.cos(np.radians(a0)), d0 * np.sin(np.radians(a0))

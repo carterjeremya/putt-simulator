@@ -36,7 +36,7 @@ st.markdown("### Inputs")
 distance = st.slider("Distance to hole (ft)", 3, 25, 10, step=1)
 angle = st.slider("Starting angle (deg)", -180, 180, 0, step=5)
 stimp = st.slider("Green speed (Stimp)", 8, 13, 10, step=1)
-slope_y = st.slider("Slope (rise/run)", 0.05, 0.04, 0.01, step=0.005, format="%.3f")
+slope_y = st.slider("Slope (rise/run)", 0.005, 0.04, 0.01, step=0.005, format="%.3f")
 
 x0 = distance * np.cos(np.radians(angle))
 y0 = distance * np.sin(np.radians(angle))

@@ -140,7 +140,7 @@ Use of this tool during sanctioned play may violate **Rule 4.3a** of the USGA Ru
 
 This software does **not constitute golf instruction or professional advice**.
 
-Actual putting conditions may vary due to factors such as grain, moisture, imperfections, or course-specific slope characteristics.  
+Actual putting conditions may vary due to factors such as grain, wind, moisture, imperfections, or course-specific slope characteristics.  
 
 Always consult with a qualified instructor or rules official and follow all **Rules of Golf** and local tournament regulations.
 """)

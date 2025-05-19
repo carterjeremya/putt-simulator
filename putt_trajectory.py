@@ -34,13 +34,6 @@ def simulate_putt(x0, y0, v0, aim_angle_deg, stimp, slope_y, g=32.174, t_max=10)
         rtol=1e-3, atol=1e-5
     )
 
-def is_high_side_entry(x, y, closest_idx, slope_y, ball_radius=0.07):
-    slope_vec = np.array([0, slope_y])
-    ball_vec = np.array([x[closest_idx], y[closest_idx]])
-    cross = np.cross(slope_vec, ball_vec)
-    offset = np.abs(cross / np.linalg.norm(slope_vec))
-    return np.sign(cross) == np.sign(slope_y) and offset >= ball_radius
-
 def converge_on_aim_and_speed(x0, y0, stimp, slope_y,
     v0_init, aim_angle_init,
     entry_speed_target=1.75, entry_speed_tol=0.25,

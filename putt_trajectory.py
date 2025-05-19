@@ -3,15 +3,15 @@ from scipy.integrate import solve_ivp
 import matplotlib.pyplot as plt
 
 def compute_mu_from_stimp(stimp, g=32.174):
-    return 36 / (2 * g * stimp)
+    return 36 / (10 / 7 * g * stimp)
 
 def putt_dynamics(t, state, g, mu, slope_y):
     x, y, vx, vy = state
     v_mag = np.hypot(vx, vy)
     if v_mag < 1e-2:
         return [0, 0, 0, 0]
-    ax = -g * mu * vx / v_mag
-    ay = -g * slope_y - g * mu * vy / v_mag
+    ax = -5/7 * g * mu * vx / v_mag
+    ay = -5/7 * g * slope_y - 5/7 * g * mu * vy / v_mag
     return [vx, vy, ax, ay]
 
 def stop_event(t, state, g, mu, slope_y):
@@ -81,7 +81,7 @@ def converge_on_aim_and_speed(x0, y0, stimp, slope_y,
 
 def plot_putt_trajectory(sol, x0, y0, aim_angle, v0, stimp, b, g=32.174, hole_radius=0.177):
     mu = compute_mu_from_stimp(stimp, g)
-    aim_distance = 0.5 * v0**2 / (g * mu)
+    aim_distance = 0.7 * v0**2 / (g * mu)
     aim_rad = np.radians(aim_angle)
     aim_x, aim_y = x0 + aim_distance * np.cos(aim_rad), y0 + aim_distance * np.sin(aim_rad)
 
@@ -124,14 +124,14 @@ if __name__ == "__main__":
     # a0:    inital angle around hole (+ is ccw, 0 is at 3 o'clock)
     # stimp: green speed
     # slope: green slope
-    d0, a0, stimp, slope_y = 12, -110, 10, 0.01
+    d0, a0, stimp, slope_y = 10, -190, 10, 0.02
     
     g = 32.174
     x0, y0 = d0 * np.cos(np.radians(a0)), d0 * np.sin(np.radians(a0))
     mu = compute_mu_from_stimp(stimp, g)
 
     aim_angle = (a0 + 180) % 360
-    v0_init = np.sqrt(2 * g * (mu - np.sin(np.radians(a0)) * slope_y) * (d0 + 2.0))
+    v0_init = np.sqrt(10/7 * g * (mu - np.sin(np.radians(a0)) * slope_y) * (d0 + 2.0))
 
     aim_angle, v0, entry_speed, sol = converge_on_aim_and_speed(
         x0, y0, stimp, slope_y, v0_init, aim_angle,
@@ -139,8 +139,8 @@ if __name__ == "__main__":
     )
 
     xf, yf = sol.y[0, -1], sol.y[1, -1]
-    d_equiv = 0.5 * v0**2 / (g * mu)
-    aim_distance = 0.5 * v0**2 / (g * mu)
+    d_equiv = 0.7 * v0**2 / (g * mu)
+    aim_distance = 0.7 * v0**2 / (g * mu)
     
     aim_rad = np.radians(aim_angle)
     aim_x = x0 + aim_distance * np.cos(aim_rad)

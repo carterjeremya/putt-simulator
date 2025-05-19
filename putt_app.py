@@ -43,7 +43,7 @@ y0 = distance * np.sin(np.radians(angle))
 g = 32.174
 mu = compute_mu_from_stimp(stimp, g)
 aim_angle = (angle + 180) % 360
-v0_init = np.sqrt(2 * g * (mu - np.sin(np.radians(angle)) * slope_y) * (distance + 2.0))
+v0_init = np.sqrt(10/7 * g * (mu - np.sin(np.radians(angle)) * slope_y) * (distance + 2.0))
 
 aim_angle, v0, entry_speed, sol = converge_on_aim_and_speed(
     x0, y0, stimp, slope_y, v0_init, aim_angle,
@@ -51,8 +51,8 @@ aim_angle, v0, entry_speed, sol = converge_on_aim_and_speed(
 )
 
 xf, yf = sol.y[0, -1], sol.y[1, -1]
-d_equiv = 0.5 * v0**2 / (g * mu)
-aim_distance = 0.5 * v0**2 / (g * mu)
+d_equiv = 0.7 * v0**2 / (g * mu)
+aim_distance = 0.7 * v0**2 / (g * mu)
 
 aim_rad = np.radians(aim_angle)
 aim_x = x0 + aim_distance * np.cos(aim_rad)
